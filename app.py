@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Superstore Dashboard",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # ── CUSTOM CSS ────────────────────────────────────────────────────────────────
@@ -158,6 +158,30 @@ st.markdown("""
     /* Hide streamlit branding */
     #MainMenu, footer, header { visibility: hidden; }
     .stDeployButton { display: none; }
+
+    /* ── SIDEBAR TOGGLE ALWAYS VISIBLE ── */
+    /* Keep the collapse/expand button always on top */
+    [data-testid="collapsedControl"] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 999 !important;
+        background: #161b27 !important;
+        border: 1px solid #2a3042 !important;
+        border-radius: 0 8px 8px 0 !important;
+        top: 50% !important;
+    }
+    [data-testid="collapsedControl"] svg {
+        fill: #6b7a99 !important;
+    }
+
+    /* Main content takes full width when sidebar is closed */
+    .main .block-container {
+        max-width: 100% !important;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+        transition: all 0.3s ease;
+    }
 </style>
 """, unsafe_allow_html=True)
 
